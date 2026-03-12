@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { JogadorComponent } from '../componentes/jogador/jogador.component';
-import { Jogador, OrdemCampo, Posicao } from '../componentes/jogador/jogar';
+import { Cartao, Jogador, OrdemCampo, Posicao, TipoCartao } from '../componentes/jogador/jogador';
 
 @Component({
   selector: 'app-tatico',
@@ -16,6 +16,7 @@ export class TaticoComponent {
       camisa: 1,
       posicao: Posicao.goleiro,
       ordem_campo: OrdemCampo.goleiro,
+      cartoes: [new Cartao(TipoCartao.amarelo)],
     },
     {
       id: 2,
@@ -23,6 +24,7 @@ export class TaticoComponent {
       camisa: 2,
       posicao: Posicao.lateral_direito,
       ordem_campo: OrdemCampo.lateral_direito,
+      cartoes: [new Cartao(TipoCartao.amarelo), new Cartao(TipoCartao.amarelo)],
     },
     {
       id: 23,

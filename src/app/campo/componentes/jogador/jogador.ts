@@ -4,13 +4,14 @@ export class Jogador {
   nome: string;
   posicao: Posicao;
   ordem_campo: OrdemCampo;
-
+  cartoes?: Cartao[];
   constructor(id: number, camisa: number, nome: string, posicao: Posicao, ordem_campo: OrdemCampo) {
     this.id = id;
     this.camisa = camisa;
     this.nome = nome;
     this.posicao = posicao;
     this.ordem_campo = ordem_campo;
+    this.cartoes = [];
   }
 }
 
@@ -35,4 +36,16 @@ export enum OrdemCampo {
   meia_destro = 8,
   atacante_canhoto = 9,
   atacante_destro = 10,
+}
+
+export enum TipoCartao {
+  amarelo,
+  vermelho,
+}
+
+export class Cartao {
+  tipo: TipoCartao;
+  constructor(tipo: TipoCartao) {
+    this.tipo = tipo;
+  }
 }
