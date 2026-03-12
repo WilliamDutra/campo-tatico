@@ -1,4 +1,5 @@
 import { Component, input, output, signal } from '@angular/core';
+import { Jogador } from './jogar';
 
 @Component({
   selector: 'app-jogador',
@@ -7,6 +8,5 @@ import { Component, input, output, signal } from '@angular/core';
   styleUrl: './jogador.component.css',
 })
 export class JogadorComponent {
-  nome = input.required();
-  camisa = input.required();
+  jogador = input.required<Jogador>();
 }
