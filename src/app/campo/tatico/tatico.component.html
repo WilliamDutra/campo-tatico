@@ -10,7 +10,7 @@
     }
   </div>
   <div class="zona w-full p-5 flex items-center justify-between gap-2 defesa">
-    @for (jogador of defesa; track jogador.id) {
+    @for (jogador of defesa; track jogador.ordem_campo) {
       <app-jogador [jogador]="jogador"></app-jogador>
     }
   </div>
