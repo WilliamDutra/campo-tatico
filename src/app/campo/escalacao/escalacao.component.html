@@ -1,1 +1,50 @@
-<p>escalacao works!</p>
+<div class="w-full h-[900px] grid grid-cols-2">
+  <div class="bg-[#000000] p-5">
+    <div class="bg-[#212529] h-full rounded flex flex-col items-center py-5">
+      <div class="text-2xl text-white uppercase bold">Corinthians</div>
+      <form class="w-full flex justify-center gap-2" [formGroup]="escalacaoForm">
+        <div>
+          <input
+            class="w-full text-center text-white"
+            type="number"
+            placeholder="Camisa 10"
+            formControlName="camisa"
+          />
+          @if (
+            escalacaoForm.get('camisa')?.hasError('required') &&
+            escalacaoForm.get('camisa')?.touched
+          ) {
+            <p class="italic text-center text-red-500 bold">O número do jogador é obrigatória!</p>
+          }
+        </div>
+        <div class="w-full">
+          <input
+            class="w-full text-white"
+            type="text"
+            placeholder="Nome do jogador"
+            formControlName="nome"
+          />
+          @if (
+            escalacaoForm.get('nome')?.hasError('required') && escalacaoForm.get('nome')?.touched
+          ) {
+            <p class="italic text-center text-red-500 bold">A camisa do jogador é obrigatória!</p>
+          }
+        </div>
+        <div>
+          <input class="bg-blue-500 text-white p-2" type="button" value="+" (click)="adicionar()" />
+        </div>
+      </form>
+      <ul class="w-full text-white">
+        @for (jogador of jogadores; track jogador.camisa) {
+          <li
+            class="rounded odd:bg-[#495057] even:bg-[#212529] w-full flex justify-center py-2 px-3 gap-3"
+          >
+            <span class="text-center">{{ jogador.camisa }}</span>
+            <span class="w-full text-center"> {{ jogador.nome }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+  <div>02</div>
+</div>
