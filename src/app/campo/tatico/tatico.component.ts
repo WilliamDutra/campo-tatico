@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { JogadorComponent } from '../componentes/jogador/jogador.component';
 import { Cartao, Jogador, OrdemCampo, Posicao, TipoCartao } from '../componentes/jogador/jogador';
+import { EscalacaoStore } from '../escalacao-store';
 
 @Component({
   selector: 'app-tatico',
@@ -8,7 +9,7 @@ import { Cartao, Jogador, OrdemCampo, Posicao, TipoCartao } from '../componentes
   templateUrl: './tatico.component.html',
   styleUrl: './tatico.component.css',
 })
-export class TaticoComponent {
+export class TaticoComponent implements OnInit {
   jogadores: Jogador[] = [
     {
       id: 1,
@@ -91,6 +92,8 @@ export class TaticoComponent {
     },
   ];
 
+  private escalacaoStore = inject(EscalacaoStore);
+
   get goleiro() {
     return this.jogadores.filter((g) => g.posicao == Posicao.goleiro)[0];
   }
@@ -116,5 +119,9 @@ export class TaticoComponent {
     return this.jogadores
       .filter((g) => g.posicao == Posicao.atacante)
       .sort((a, b) => a.ordem_campo - b.ordem_campo);
+  }
+
+  ngOnInit() {
+    this.escalacaoStore.data$.subscribe((j) => (this.jogadores = j));
   }
 }
