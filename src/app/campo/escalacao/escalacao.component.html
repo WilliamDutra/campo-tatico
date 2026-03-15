@@ -31,7 +31,19 @@
           }
         </div>
         <div>
-          <input class="bg-blue-500 text-white p-2" type="button" value="+" (click)="adicionar()" />
+          <select formControlName="posicao">
+            @for (posicao of posicoes; track posicao) {
+              <option [value]="posicao.value">{{ posicao.label }}</option>
+            }
+          </select>
+        </div>
+        <div>
+          <input
+            class="bg-blue-500 text-white p-2 rounded bold"
+            type="button"
+            value="+"
+            (click)="adicionar()"
+          />
         </div>
       </form>
       <ul class="w-full text-white">

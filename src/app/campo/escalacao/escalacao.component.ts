@@ -19,13 +19,25 @@ export class EscalacaoComponent {
   escalacaoForm: FormGroup = new FormGroup({
     camisa: new FormControl('', [Validators.required]),
     nome: new FormControl('', [Validators.required]),
+    posicao: new FormControl('', [Validators.required]),
   });
 
   jogadores: Jogador[] = [];
 
+  posicoes = Object.keys(Posicao)
+    .filter((key) => isNaN(Number(key)))
+    .map((key) => ({
+      label: key,
+      value: Posicao[key as keyof typeof Posicao],
+    }));
+
   adicionar() {
-    const { camisa, nome } = this.escalacaoForm.value;
+    if (this.escalacaoForm.invalid) {
+      return;
+    }
+    const { camisa, nome, posicao } = this.escalacaoForm.value;
     this.jogadores.push(new Jogador(camisa, nome));
-    this.escalacaoStore.adicionarJogador(camisa, nome, Posicao.atacante, this.index++);
+    this.escalacaoStore.adicionarJogador(camisa, nome, posicao, this.index++);
+    this.escalacaoForm.reset();
   }
 }
