@@ -4,10 +4,11 @@ import { Jogador } from './jogador';
 import { RouterLink } from '@angular/router';
 import { EscalacaoStore } from '../escalacao-store';
 import { Posicao } from '../componentes/jogador/jogador';
+import { InputDirective } from '../../shared/ui/input.directive';
 
 @Component({
   selector: 'app-escalacao',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, InputDirective],
   templateUrl: './escalacao.component.html',
   styleUrl: './escalacao.component.css',
 })
